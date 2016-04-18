@@ -33,9 +33,9 @@ class IndexRecord(Base):
     __tablename__ = 'index_record'
 
     did = Column(String, primary_key=True)
-    rev = Column(String)
-    form = Column(String)
-    size = Column(Integer)
+    rev = Column(String, index=True)
+    form = Column(String, index=True)
+    size = Column(Integer, index=True)
 
     urls = relationship('IndexRecordUrl',
         backref='index_record',
@@ -64,7 +64,7 @@ class IndexRecordHash(Base):
 
     did = Column(String, ForeignKey('index_record.did'), primary_key=True)
     hash_type = Column(String, primary_key=True)
-    hash_value = Column(String)
+    hash_value = Column(String, index=True)
 
 class SQLAlchemyIndexDriver(IndexDriverABC):
     '''

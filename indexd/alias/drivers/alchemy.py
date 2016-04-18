@@ -33,23 +33,23 @@ class AliasRecord(Base):
     __tablename__ = 'alias_record'
 
     name = Column(String, primary_key=True)
-    rev = Column(String)
-    size = Column(Integer)
+    rev = Column(String, index=True)
+    size = Column(Integer, index=True)
 
     hashes = relationship('AliasRecordHash',
         backref='alias_record',
         cascade='all, delete-orphan',
     )
 
-    release = Column(String)
-    metastring = Column(String)
+    release = Column(String, index=True)
+    metastring = Column(String, index=True)
 
     host_authorities = relationship('AliasRecordHostAuthority',
         backref='alias_record',
         cascade='all, delete-orphan',
     )
 
-    keeper_authority = Column(String)
+    keeper_authority = Column(String, index=True)
 
 class AliasRecordHash(Base):
     '''
@@ -59,7 +59,7 @@ class AliasRecordHash(Base):
 
     name = Column(String, ForeignKey('alias_record.name'), primary_key=True)
     hash_type = Column(String, primary_key=True)
-    hash_value = Column(String)
+    hash_value = Column(String, index=True)
 
 class AliasRecordHostAuthority(Base):
     '''

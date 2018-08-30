@@ -394,7 +394,7 @@ class SQLAlchemyIndexDriver(IndexDriverABC):
                 query = query.limit(limit)
 
             self.logger.info('Query: {}'.format(query))            
-
+            self.logger.info('Query count: {}'.format(query.count()))
             return [i.to_document_dict() for i in query]
 
     @staticmethod

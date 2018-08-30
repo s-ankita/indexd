@@ -395,7 +395,15 @@ class SQLAlchemyIndexDriver(IndexDriverABC):
 
             self.logger.info('Query: {}'.format(query))            
             self.logger.info('Query count: {}'.format(query.count()))
-            return [i.to_document_dict() for i in query]
+            results = []
+            result_index = 0
+            for i in query:
+                result_index += 1
+                self.logger.info('Result index: {}'.format(result_index))
+                results.append(i.to_document_dict())
+            self.logger.info('Records returned: {}'.format(len(results)))
+            return results
+            #return [i.to_document_dict() for i in query]
 
     @staticmethod
     def _negate_filter(session,

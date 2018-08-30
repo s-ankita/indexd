@@ -393,6 +393,8 @@ class SQLAlchemyIndexDriver(IndexDriverABC):
                 # only apply limit when ids is not provided
                 query = query.limit(limit)
 
+            self.logger.info('Query: {}'.format(query))            
+
             return [i.to_document_dict() for i in query]
 
     @staticmethod

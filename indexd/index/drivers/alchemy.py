@@ -395,9 +395,11 @@ class SQLAlchemyIndexDriver(IndexDriverABC):
 
             self.logger.info('Query: {}'.format(query))            
             self.logger.info('Query count: {}'.format(query.count()))
+            query_results = query.all()
+            self.logger.info('All query results: {}'.format(len(query_results)))
             results = []
             result_index = 0
-            for i in query:
+            for i in query_results:
                 result_index += 1
                 self.logger.info('Result index: {}'.format(result_index))
                 results.append(i.to_document_dict())

@@ -82,30 +82,35 @@ class IndexRecord(Base):
         'IndexRecordUrl',
         backref='index_record',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
 
     acl = relationship(
         'IndexRecordACE',
         backref='index_record',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
 
     hashes = relationship(
         'IndexRecordHash',
         backref='index_record',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
 
     index_metadata = relationship(
         'IndexRecordMetadata',
         backref='index_record',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
 
     aliases = relationship(
         'IndexRecordAlias',
         backref='index_record',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
 
     def to_document_dict(self):
@@ -170,6 +175,7 @@ class IndexRecordUrl(Base):
         'IndexRecordUrlMetadata',
         backref='index_record_url',
         cascade='all, delete-orphan',
+        lazy='joined',
     )
     __table_args__ = (
         Index('index_record_url_idx', 'did'),

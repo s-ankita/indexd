@@ -6,6 +6,9 @@ FROM quay.io/cdis/python-nginx:pybase3-1.0.0
 
 ENV appname=indexd
 
+ENV UWSGI_CHEAPER=
+ENV UWSGI_PROCESSES=2
+
 RUN apk update \
     && apk add postgresql-libs postgresql-dev libffi-dev libressl-dev \
     && apk add linux-headers musl-dev gcc \

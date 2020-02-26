@@ -1,7 +1,7 @@
 # To run: docker run -v /path/to/wsgi.py:/var/www/indexd/wsgi.py --name=indexd -p 81:80 indexd
 # To check running container: docker exec -it indexd /bin/bash 
 
-FROM quay.io/cdis/python-nginx:pybase3-1.1.0
+FROM quay.io/cdis/python-nginx:chore_poc_new_relic
 
 
 ENV appname=indexd
@@ -18,6 +18,8 @@ WORKDIR /$appname
 
 RUN python -m pip install --upgrade pip \
     && python -m pip install --upgrade setuptools \
+    && python -m pip install --upgrade uwsgi \
+    && python -m pip install newrelic \
     && pip install -r requirements.txt
 
 RUN mkdir -p /var/www/$appname \
